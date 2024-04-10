@@ -59,6 +59,9 @@ console.log(path.extname(__filename));
 
 console.log(path.join('/hello','/hello','file.txt'));
 
+const pathProps = path.parse('/foo/bar/nodejs');
+console.log(pathProps);
+
 console.log("");
 console.log("File Structure Module");
 console.log("Asynchronous Way")
@@ -83,3 +86,14 @@ fs.writeFile('text.txt','Writting in text file',(err) => {
 
 fs.writeFileSync('text2.txt','Inside text 2 writting', 'utf-8')
 console.log('File Written: Success');
+
+fs.stat('file.txt', (err,stats) => {
+    if(err){
+        console.log(err);
+        return;
+    }
+    console.log(stats);
+})
+
+const stats1 = fs.statSync('file.txt');
+console.log(stats1);
