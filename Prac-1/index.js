@@ -8,16 +8,34 @@ console.log("LOCAL MODULES : : ");
 //METHOD-1
 console.log("Method-1");
 require("./add");
-
+console.log("Normal");
 
 //METHOD-2
 console.log("Method-2");
-const add1 = require("./add"); //better practicet to write in variable
+const add1 = require("./add"); //better practice to write in variable
 const sum1 = add1(3,3);
 const sum2 = add1(5,5);
 console.log(sum1);
 console.log(sum2);
 
+console.log("Multiple Exports");
+const imp = require("./add");
+console.log(imp);
+
+const data = require("./example");
+console.log(data);
+
+
+console.log("")
+console.log("Exports VS module Exports");
+console.log("MODULE EXPORTS:");
+const msg = require("./example1");
+msg.sayHello();
+msg.sayThanks();
+console.log("EXPORTS:");
+const msg1 = require("./exports");
+msg1.sayHello1();
+msg1.sayThanks1();
 
 console.log("")
 console.log("BUILT-IN  : : ");

@@ -10,4 +10,10 @@ const add1 = (a,b) => {
     return a+b;
 }
 
-module.exports = add1;
+//module.exports = add1;
+
+//MULTPLE EXPORTS
+const a = "Hello";
+const b = "World";
+
+module.exports = add1,{a,b}
