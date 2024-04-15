@@ -40,6 +40,16 @@ app.put('/users/:name',async(req,res) => {
     res.send('updated');
 })
 
+//DELETE (remove) data
+app.delete('/users/:name',async(req,res) => {
+    const db = await connectToDatabase();
+    const collection = db.collection('users');
+
+    const userName = req.params.name;
+    collection.deleteOne({name:userName});
+    res.send("Deleted");
+})
+
 app.listen(3000,()=> {
     console.log("Server is running on Port:3000")
 })
