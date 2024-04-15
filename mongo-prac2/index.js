@@ -4,7 +4,7 @@ const {connectToDatabase} = require('./database');
 
 
 //GET (read) data
-app.get('/',async(req,res) => {
+app.get('/users',async(req,res) => {
     try{
         const db = await connectToDatabase();
         const collection = db.collection('users');
@@ -15,6 +15,29 @@ app.get('/',async(req,res) => {
         console.error(error);
         res.status(500).json({error:'Internal Server Error'});
     }
+})
+
+//POST (insert) data
+app.use(express.json());
+app.post('/users',async(req,res) => {
+    const db = await connectToDatabase();
+    const collection = db.collection('users');
+
+    let result = collection.insertOne(req.body); //passing data through raw JSON in postman
+    res.json("Updated");
+})
+
+//PUT (update) data
+app.put('/users/:name',async(req,res) => {
+    const db = await connectToDatabase();
+    const collection = db.collection('users');
+
+    //static way
+    //let singleData = await collection.updateOne({name:"name-1"},{$set:{name:"updated-name",age:25}});
+
+    //dynamic way
+    let singleData = await collection.updateOne({name:req.params.name},{$set:req.body});
+    res.send('updated');
 })
 
 app.listen(3000,()=> {
